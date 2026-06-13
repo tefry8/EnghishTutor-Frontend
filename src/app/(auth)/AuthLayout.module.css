@@ -1,0 +1,12 @@
+.enter {
+  animation: gentleIn 6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes gentleIn {
+  from {
+    opacity: 0.90;
+  }
+  to {
+    opacity: 1;
+  }
+}

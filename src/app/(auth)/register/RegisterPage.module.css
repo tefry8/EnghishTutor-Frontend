@@ -1,0 +1,366 @@
+/* ─────────────────────────────────────────────
+   Página
+───────────────────────────────────────────── */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #071a0e;
+}
+
+/* ─── Fondo ─── */
+.backgroundGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(26, 122, 60, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 10%, rgba(245, 197, 24, 0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 90%, rgba(34, 197, 94, 0.12) 0%, transparent 40%),
+    linear-gradient(160deg, #071a0e 0%, #0d3320 40%, #071a0e 100%);
+}
+
+/* ─── Partículas ─── */
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatParticle 10s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+  width: 350px;
+  height: 350px;
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  width: 250px;
+  height: 250px;
+  bottom: -80px;
+  right: 30%;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.1) 0%, transparent 70%);
+  animation-delay: 3.5s;
+}
+
+.particle:nth-child(3) {
+  width: 160px;
+  height: 160px;
+  top: 30%;
+  right: 5%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+  animation-delay: 7s;
+}
+
+@keyframes floatParticle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-22px) scale(1.06); }
+}
+
+/* ─────────────────────────────────────────────
+   Contenedor split
+───────────────────────────────────────────── */
+
+.splitContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+  min-height: 620px;
+  border-radius: 28px;
+  overflow: hidden;
+  margin: 2rem 1.5rem;
+  animation: cardIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-shadow:
+    0 0 0 1px rgba(34, 197, 94, 0.2),
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ─────────────────────────────────────────────
+   Panel IZQUIERDO
+───────────────────────────────────────────── */
+
+.leftPanel {
+  flex: 1.1;
+  background: linear-gradient(
+    155deg,
+    #0d3320 0%,
+    #1a5c38 40%,
+    #1a7a3c 70%,
+    #22863f 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.leftPanel::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.leftPanel::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 340px;
+  position: relative;
+  z-index: 1;
+}
+
+.welcomeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(245, 197, 24, 0.18);
+  border: 1px solid rgba(245, 197, 24, 0.45);
+  color: #f5c518;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.85rem;
+  border-radius: 100px;
+}
+
+.welcomeTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.welcomeAccent {
+  color: #f5c518;
+}
+
+
+.illustrationCircle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d3320 0%, #1a7a3c 50%, #22c55e 100%);
+  border: 3px solid rgba(245, 197, 24, 0.3);
+  box-shadow:
+    0 0 0 8px rgba(34, 197, 94, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.illustrationText {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  line-height: 1.9;
+  font-style: normal;
+}
+
+.illustrationText strong {
+  font-size: 1.15rem;
+  color: #f5c518;
+  font-weight: 800;
+  display: block;
+}
+
+.welcomeSubtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 300px;
+}
+
+.schoolLogoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 0.6rem 1rem;
+  backdrop-filter: blur(6px);
+  margin-left: 2rem;
+  height: auto;
+}
+
+.schoolLogo {
+  width: 40px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.schoolLogoText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+}
+
+.schoolLogoText strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.schoolLogoText span {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ─────────────────────────────────────────────
+   Panel DERECHO
+───────────────────────────────────────────── */
+
+.rightPanel {
+  flex: 0.9;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 3rem 2.5rem 2.5rem;
+  position: relative;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1a7a3c 0%, #f5c518 100%);
+  border-radius: 4px 4px 0 0;
+  z-index: -2; /* baja el z-index para que quede detrás del logo */
+}
+
+.tutorLogoWrapper {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: linear-gradient(135deg, rgba(245, 197, 24, 0.12) 0%, rgba(26, 122, 60, 0.08) 100%);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: 16px;
+  padding: 0.5rem;
+  z-index: 2;
+}
+
+
+/* ─────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .splitContainer {
+    flex-direction: column;
+    margin: 1rem;
+    border-radius: 22px;
+    min-height: auto;
+  }
+
+  .leftPanel {
+    padding: 2.5rem 2rem 2rem;
+  }
+
+  .leftContent {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .welcomeSubtitle {
+    text-align: center;
+  }
+
+  .schoolLogoWrapper {
+    align-self: center;
+  }
+
+  .illustrationWrapper {
+    width: 170px;
+    height: 170px;
+  }
+
+  .rightPanel {
+    padding: 4rem 2rem 2.5rem;
+  }
+
+  .rightPanel::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 4px;
+    background: linear-gradient(90deg, #1a7a3c 0%, #f5c518 50%, #1a7a3c 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .splitContainer {
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .rightPanel {
+    padding: 4.5rem 1.5rem 2rem;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
