@@ -13,7 +13,7 @@ export default function DashboardPage() {
         fontWeight: 700,
         letterSpacing: "-0.02em",
       }}>
-        Bienvenido al Dashboard 🎓
+        JHECAS CARA DE MI PICHULA
       </h1>
     </main>
   );
