@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000",
@@ -11,7 +11,6 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // Inyecta el token JWT desde localStorage si existe
     if (typeof window !== "undefined") {
       try {
         const raw = localStorage.getItem("auth-storage");
@@ -40,6 +39,21 @@ api.interceptors.response.use(
 
     const { status } = error.response;
 
+    // Si el token expiró, limpiar sesión y redirigir al login
+    // Evitar redirigir automáticamente cuando la petición actual es el login/registro
+    if (status === 401 && typeof window !== "undefined") {
+      const requestUrl = (error.config as AxiosRequestConfig | undefined)?.url ?? "";
+      const isAuthEndpoint = /\/auth\/(login|register)/.test(requestUrl);
+      if (!isAuthEndpoint) {
+        try {
+          localStorage.removeItem("auth-storage");
+        } catch {
+          // ignorar
+        }
+        window.location.href = "/login";
+      }
+    }
+
     const statusMessages: Record<number, string> = {
       400: "Correo o contraseña incorrectos.",
       401: "Sesión expirada. Inicia sesión nuevamente.",
@@ -58,3 +72,19 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+
+
+export const apiClient = {
+  get: <T>(endpoint: string): Promise<T> =>
+    api.get<T>(endpoint).then((res) => res.data),
+
+  post: <T>(endpoint: string, body: unknown): Promise<T> =>
+    api.post<T>(endpoint, body).then((res) => res.data),
+
+  put: <T>(endpoint: string, body: unknown): Promise<T> =>
+    api.put<T>(endpoint, body).then((res) => res.data),
+
+  delete: <T>(endpoint: string): Promise<T> =>
+    api.delete<T>(endpoint).then((res) => res.data),
+};
